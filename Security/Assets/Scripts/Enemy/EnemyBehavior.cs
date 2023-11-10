@@ -18,7 +18,7 @@ public class EnemyBehavior : MonoBehaviour
         #region Singleton
         if (instance == null)
         {
-            instance = this;
+            instance = this;    
         }
         else
         {

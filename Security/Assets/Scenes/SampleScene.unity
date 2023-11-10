@@ -401,6 +401,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onSightFill: {fileID: 1026642217}
+--- !u!1 &785616346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4449586016137428581, guid: 0823d692f7dd51f4086370b92cdb3a7c, type: 3}
+  m_PrefabInstance: {fileID: 3214567532373208468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &785616350
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785616346}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9fb90cceb2b8b36449bf34f98b7b281c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &854433720
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +631,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4977115065857233938, guid: 7e0e5ffefb1f6464dadf4c6524be9438, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 88aa028f7db5a5e408784a9ee9373f87, type: 2}
     - target: {fileID: 5537928043229304802, guid: 7e0e5ffefb1f6464dadf4c6524be9438, type: 3}
       propertyPath: m_Name
       value: Player
@@ -673,5 +703,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4449586016137428581, guid: 0823d692f7dd51f4086370b92cdb3a7c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 785616350}
   m_SourcePrefab: {fileID: 100100000, guid: 0823d692f7dd51f4086370b92cdb3a7c, type: 3}

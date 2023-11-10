@@ -20,6 +20,9 @@ public class PlayerBehavior : MonoBehaviour
     private Vector2 moveDirection;
     private bool playerIsOnSight;
     private float guardAwareness;
+    private bool isMoving;
+
+    private int isWalkingAnimatorHash;
 
     [SerializeField] private float velocity = 10f;
     [SerializeField] private float levelAwarenessUP = 0.2f;
@@ -40,8 +43,10 @@ public class PlayerBehavior : MonoBehaviour
 
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
-
         inputManager = new InputManager();
+
+        GetAnimatorParamentersHash();
+
     }
 
     private void Update()
@@ -49,6 +54,7 @@ public class PlayerBehavior : MonoBehaviour
         playerIsOnSight = EnemyBehavior.instance.PlayerOnSight();
         isOnSight(playerIsOnSight);
         Movement();
+        PlayerAnimation();
     }
 
     private void Movement()
@@ -65,6 +71,7 @@ public class PlayerBehavior : MonoBehaviour
         moveDirection.x = inputManager.Movement.HorizontalWalk.ReadValue<float>();
         moveDirection.y = inputManager.Movement.VerticalWalk.ReadValue<float>();
         rigidBody.velocity = new Vector2(moveDirection.x * velocity, moveDirection.y * velocity);
+        isMoving = moveDirection.x != 0;
     }
 
     public void isOnSight(bool OnSight) 
@@ -79,6 +86,23 @@ public class PlayerBehavior : MonoBehaviour
             Debug.Log("Sumiu");
             guardAwareness -= Time.deltaTime * levelAwarenessDown;
         }
+    }
+
+    private void PlayerAnimation()
+    {
+        if (isMoving && animator.GetBool(isWalkingAnimatorHash) == false)
+        {
+            animator.SetBool(isWalkingAnimatorHash, true);
+        }
+        else if (!isMoving && animator.GetBool(isWalkingAnimatorHash) == true)
+        {
+            animator.SetBool(isWalkingAnimatorHash, false);
+        }
+    }
+
+    private void GetAnimatorParamentersHash()
+    {
+        isWalkingAnimatorHash = Animator.StringToHash("isWalking");
     }
 
     public float GetGuardAwareness()
