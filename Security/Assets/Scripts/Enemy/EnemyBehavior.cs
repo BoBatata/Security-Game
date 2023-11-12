@@ -58,7 +58,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public bool PlayerOnSight()
     {
-        bool playerIsOnSight = Physics2D.OverlapBox(sightPosition.position, new Vector2(sightHorizontalSize, sightVerticalSize), 0,playerOnSightCheck);
+        bool playerIsOnSight = Physics2D.OverlapBox(sightPosition.position, new Vector2(sightHorizontalSize, sightVerticalSize), 0  ,playerOnSightCheck);
         return playerIsOnSight;
     }
 
