@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        inputManager.Disable();
         gameOver.ShowGameOver();
     }
 

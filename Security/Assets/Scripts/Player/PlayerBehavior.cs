@@ -12,7 +12,7 @@ public class PlayerBehavior : MonoBehaviour
 {
     public static PlayerBehavior instance;
 
-    private InputManager inputManager;
+    public InputManager inputManager;
 
     private Animator animator;
     private Rigidbody2D rigidBody;
