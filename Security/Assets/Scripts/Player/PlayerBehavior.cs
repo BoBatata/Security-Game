@@ -127,6 +127,11 @@ public class PlayerBehavior : MonoBehaviour
         return guardAwareness;
     }
 
+    public void PlayerLost()
+    {
+        inputManager.Disable();
+    }
+
     private void OnEnable()
     {
         inputManager.Enable();

@@ -34,8 +34,13 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        inputManager.Disable();
+        playerBehavior.PlayerLost();
         gameOver.ShowGameOver();
+    }
+
+    public void GoBackMenu()
+    {
+        SceneManager.LoadScene("sMenu");
     }
 
     public void IncreaseScore(int gainScore)
