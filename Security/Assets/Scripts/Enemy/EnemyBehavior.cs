@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -11,6 +12,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private Animator animator;
     private Rigidbody2D rigidBody;
+    private Transform transformPlayer;
 
     [SerializeField] private Transform sightPosition;
     [SerializeField] private LayerMask playerOnSightCheck;
@@ -19,6 +21,8 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private float sightHorizontalSize = 3f;
     [SerializeField] private float sightVerticalSize = 1.3f;
     [SerializeField] private float velocity = 10f;
+    [SerializeField] private Transform[] spawnPoints;
+
     private float playerSpotted = 0f;
     private float currentVelocity;
     private bool isWalking;
@@ -32,16 +36,18 @@ public class EnemyBehavior : MonoBehaviour
         {
             instance = this;
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
         #endregion
 
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        transformPlayer = GetComponent<Transform>();
 
         GetAnimatorParamentersHash();
+    }
+
+    private void Start()
+    {
+        RandomSpeed();
     }
 
     private void Update()
@@ -88,6 +94,24 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Transform spawnPoint;
+
+        if (collision.collider.tag == "EndRoute" || collision.collider.tag == "Enemy")
+        {
+            int randoSpawn = Random.Range(0, spawnPoints.Count());
+            spawnPoint = spawnPoints[randoSpawn];
+            transform.position = new Vector2(spawnPoint.position.x, spawnPoint.position.y);
+            RandomSpeed();
+        }
+    }
+
+    private void RandomSpeed()
+    {
+        int randoSpeed = Random.Range(5, 10);
+        velocity = randoSpeed;
+    }
 
     private void GetAnimatorParamentersHash()
     {
