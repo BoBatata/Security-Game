@@ -17,16 +17,23 @@ public class PlayerBehavior : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rigidBody;
 
+    #region Movement Variables
     private Vector2 moveDirection;
+    private bool isMoving;
+    #endregion
+
+    #region Sight Variables
     private bool playerIsOnSight;
     private float guardAwareness;
-    private bool isMoving;
+    #endregion
 
     private int isWalkingAnimatorHash;
 
-    [SerializeField] private float velocity = 10f;
+    #region Serialize variables
+    [SerializeField] private float velocity = 5f;
     [SerializeField] private float levelAwarenessUP = 0.2f;
     [SerializeField] private float levelAwarenessDown = 0.1f;
+    #endregion
 
     private void Awake()
     {
@@ -74,17 +81,27 @@ public class PlayerBehavior : MonoBehaviour
         isMoving = moveDirection.x != 0;
     }
 
-    public void isOnSight(bool OnSight) 
+    public void isOnSight(bool OnSight)
     {
         if (OnSight == true)
         {
             Debug.Log("Estou te vendo");
-            guardAwareness += Time.deltaTime * levelAwarenessUP;
+            guardAwareness += Time.deltaTime * levelAwarenessUP / 2;
         }
-        else
+        else if (OnSight == false && guardAwareness != 0)
         {
             Debug.Log("Sumiu");
-            guardAwareness -= Time.deltaTime * levelAwarenessDown;
+            guardAwareness -= Time.deltaTime * levelAwarenessDown / 2;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Coin")
+        {
+            GameManager.instance.IncreaseScore(1);
+            CoinSpawn.instance.CoinTake();
+            Destroy(collision.collider.gameObject);
         }
     }
 

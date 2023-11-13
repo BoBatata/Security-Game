@@ -109,7 +109,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void RandomSpeed()
     {
-        int randoSpeed = Random.Range(5, 10);
+        int randoSpeed = Random.Range(10, 15);
         velocity = randoSpeed;
     }
 

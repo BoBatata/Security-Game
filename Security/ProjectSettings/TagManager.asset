@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - EndRoute
+  - Enemy
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Background
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -42,6 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3778604205
+    locked: 0
   - name: Collider
     uniqueID: 2220788755
+    locked: 0
+  - name: Characters
+    uniqueID: 1514843847
     locked: 0
